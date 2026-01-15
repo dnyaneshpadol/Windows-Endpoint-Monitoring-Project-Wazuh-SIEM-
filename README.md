@@ -1,62 +1,51 @@
-🚀 Windows Endpoint Monitoring Project (Wazuh SIEM)
+# Windows Endpoint Monitoring Project (Wazuh SIEM)
 
-This project demonstrates a complete Windows endpoint monitoring pipeline using Wazuh SIEM, Sysmon, Filebeat, and the Wazuh Windows Agent.
-The goal is to collect security events from a Windows 10 machine, forward them to a Wazuh server (running on Ubuntu), and visualize the alerts using the Wazuh Dashboard.
+This project demonstrates a complete Windows endpoint monitoring setup using Wazuh SIEM, Sysmon, Filebeat, and Wazuh Windows Agent.
+Logs are collected from a Windows 10 endpoint, forwarded to a Wazuh server running on Ubuntu, and visualized in the Wazuh Dashboard.
 
-The architecture diagram also includes future SOC automation components like Shuffle SOAR and TheHive, but those parts are not implemented in this project.
-------------------------------------------------------------------------------------------------
-🧑‍💻 Basics
+The architecture diagram also includes future SOC automation using Shuffle SOAR and TheHive, but those parts are not implemented yet. They are shown only for learning and future expansion.
 
-Sysmon → Watches Windows activities (process creation, network, registry changes).
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🔹 Project Overview
 
-Filebeat → Sends Sysmon logs to the Wazuh server.
+Environment Used:
 
-Wazuh Agent → Helps send Windows logs securely to the server.
+# Component	                                Role
+ Ubuntu VM                                	Wazuh Server (Manager, Indexer, Dashboard)
+ Windows 10 VM                            	Wazuh Agent + Sysmon + Filebeat
+ Windows 11 Host                          	Access Wazuh Dashboard via browser
 
-Wazuh Server → Analyzes logs, detects threats, and shows alerts.
+ 
+Project Goal
 
-Wazuh Dashboard → The web interface where you view everything.
+✔ Collect Windows logs
+✔ Forward them to Wazuh Manager
+✔ Parse & analyze logs
+✔ Display alerts in Wazuh Dashboard
+✔ Prepare for future SOAR automation
 
-This project teaches you how security logs flow, how SIEM tools work, and how SOC analysts monitor endpoints.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🔹 Architecture Diagram
 
-------------------------------------------------------------------------------------------------
-📌 Project Overview
+The architecture diagram was created using draw.io. It shows the full SOC automation pipeline (Wazuh → Shuffle → TheHive).
+⚠ Only Wazuh + Sysmon + Filebeat parts are implemented in this project.
+Shuffle & TheHive are included for future expansion.
 
-Environment Used
-________________________________________________________________________________________________
-Component                             	Role
-________________________________________________________________________________________________
-1.Ubuntu VM	                            Wazuh Server (Manager, Indexer, Dashboard)
-________________________________________________________________________________________________
-2.Windows 10 VM                    	    Wazuh Agent + Sysmon + Filebeat
-________________________________________________________________________________________________
-3.Windows 11 Host                      	Access Wazuh Dashboard
-________________________________________________________________________________________________
+👉 View Diagram:
+SOC Automation Flow Diagram
+File: SOC Automation flow diagram.drawio.png
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Architecture/SOC%20Automation%20flow%20diagram.drawio%20(1).png
 
-Goal
-
-✔ Collect endpoint logs
-✔ Forward to Wazuh Manager
-✔ Parse, analyze, and visualize alerts
-✔ Prepare for future SOC automation
-
-------------------------------------------------------------------------------------------------
-📌 Architecture Diagram
-
-👉 SOC Automation Architecture Diagram
-
-*Note:
-This diagram was made using Draw.io.
-It shows a complete SOC pipeline including TheHive and Shuffle SOAR, but only the Wazuh monitoring part is implemented in this project.
-
-------------------------------------------------------------------------------------------------
-📌 Prerequisites
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🔹 Prerequisites
 
 VirtualBox or VMware
 
-Ubuntu + Windows 10 + Windows 11
+Windows 10 VM
 
-Basic networking (Host-only or NAT network)
+Ubuntu VM (20.04 or 22.04)
+
+Basic VM networking (NAT / Host-only)
 
 Internet access for installation
 
@@ -70,88 +59,124 @@ Wazuh Dashboard
 
 Wazuh Windows Agent
 
-Sysmon
+Sysmon + Sysmon configuration
 
 Filebeat
 
-------------------------------------------------------------------------------------------------
-📘 Installation Guides (PDFs)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🔹 Installation Guides (PDFs)
 
+👉 Sysmon Installation & Wazuh Integration
+File: Sysmon_Installation_and_Wazuh_Integration.pdf
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Installation-Guides/Sysmon_Installation_and_Wazuh_Integration.pdf
 
-________________________________________________________________________________________________
-Component                                      	PDF Link
-________________________________________________________________________________________________
-Sysmon Setup + Wazuh Integration            	👉 Sysmon_Installation_and_Wazuh_Integration.pdf
-________________________________________________________________________________________________
-Wazuh Server Installation (Ubuntu 4.7.5)     	👉 Wazuh_Server_Installation_Ubuntu_4.7.5.pdf
-________________________________________________________________________________________________
-Wazuh Windows Agent Installation     	👉Wazuh_Windows_Agent_Installation_and_Registration.pdf
-________________________________________________________________________________________________
+👉 Wazuh Server Installation (Ubuntu 4.7.5)
+File: Wazuh_Server_Installation_Ubuntu_4.7.5.pdf
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Installation-Guides/Wazuh_Server_Installation_Ubuntu_4.7.5.pdf
 
-------------------------------------------------------------------------------------------------
+👉 Wazuh Windows Agent Installation
+File: Wazuh_Windows_Agent_Installation_and_Registration.pdf
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Installation-Guides/Wazuh_Windows_Agent_Installation_and_Registration.pdf
 
-⚙️ Configuration Files
-________________________________________________________________________________________________
-Purpose                                   	File
-________________________________________________________________________________________________
-Sysmon Rules	                            👉 sysmonconfig.xml
-________________________________________________________________________________________________
-Wazuh Agent Config	                      👉 ossec.conf
-________________________________________________________________________________________________
-Filebeat Config	                          👉 filebeat.yml
-________________________________________________________________________________________________
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🔹 Configuration Files
 
-------------------------------------------------------------------------------------------------
-📸 Screenshots
+👉 Sysmon Configuration
+File: sysmonconfig.xml
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Config-Files/sysmonconfig.xml
 
-________________________________________________________________________________________________
-Screenshot                          	 Link
-________________________________________________________________________________________________
-Windows 10 System Info	              win10-system-info.png
-________________________________________________________________________________________________
-Wazuh Manager Status                	wazuh-manager-status.png
-________________________________________________________________________________________________
-Wazuh Indexer Status	                wazuh-indexer-status.png
-________________________________________________________________________________________________
-Sysmon Running	                      sysmon_service_running.png
-________________________________________________________________________________________________
-Sysmon Events	                        Sysmon_Events_in_Event_View.png
-________________________________________________________________________________________________
-Dashboard Overview	                  wazuh-dashboard-overview.png
-________________________________________________________________________________________________
-Wazuh Agent List	                    Dashboard_wazuh_agent_list.png
-________________________________________________________________________________________________
-Filebeat Status                     	filebeat_status.png
-________________________________________________________________________________________________
-Dashboard Login                     	wazuh-dashboard-login.png
-________________________________________________________________________________________________
-Windows Agent Status	                win10-wazuh-agent-status.png
-________________________________________________________________________________________________
-Wazuh API Configuration	             Wazuh_API_configuration_page.png
-________________________________________________________________________________________________
-Ubuntu Version	                     ubuntu-version.png
-________________________________________________________________________________________________
+👉 Wazuh Agent Configuration
+File: ossec.conf
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Config-Files/ossec.conf
 
-------------------------------------------------------------------------------------------------
-🛠️ Steps Followed in This Project
+👉 Filebeat Configuration
+File: filebeat.yml
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Config-Files/filebeat.yml
 
-Created Ubuntu and Windows 10 VMs
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🔹 Screenshots
+
+All screenshots are stored in the /Screenshots folder.
+
+✔ Windows 10 System Info
+
+File: win10-system-info.png
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Screenshots/win10-system-info.png
+
+✔ Wazuh Manager Status
+
+File: wazuh-manager-status.png
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Screenshots/wazuh-manager-status.png
+
+✔ Wazuh Indexer Status
+
+File: wazuh-indexer-status.png
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Screenshots/wazuh-indexer-status.png
+
+✔ Sysmon Service Running
+
+File: sysmon_service_running.png
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Screenshots/sysmon_service_running.png
+
+✔ Sysmon Events in Event Viewer
+
+File: Sysmon_Events_in_Event_View.PNG
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Screenshots/Sysmon_Events_in_Event_View.PNG
+
+✔ Wazuh Dashboard Overview
+
+File: wazuh-dashboard-overview.png
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Screenshots/wazuh-dashboard-overview.png
+
+✔ Wazuh Dashboard Login
+
+File: wazuh-dashboard-login.png
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Screenshots/wazuh-dashboard-login.png
+
+✔ Wazuh Agent List
+
+File: Dashboard_wazuh_agent_list.png
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Screenshots/Dashboard_wazuh_agent_list.png
+
+✔ Filebeat Status
+
+File: filebeat_status.png
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Screenshots/filebeat_status.png
+
+✔ Windows Agent Status
+
+File: win10-wazuh-agent-status.png
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Screenshots/win10-wazuh-agent-status.png
+
+✔ Ubuntu Version
+
+File: ubuntu-version.png
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Screenshots/ubuntu-version.png
+
+✔ Wazuh API Configuration Page
+
+File: Wazuh_API_configuration_page.png
+https://github.com/dnyaneshpadol/Windows-Endpoint-Monitoring-Project-Wazuh-SIEM-/blob/main/Screenshots/Wazuh_API_configuration_page.png
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🔹 Steps Followed in This Project
+
+Created Ubuntu & Windows 10 VMs
 
 Installed Wazuh Server (Manager, Indexer, Dashboard)
 
-Installed Wazuh Agent on Windows 10
+Installed Wazuh Windows Agent
 
-Installed Sysmon with custom config
+Installed Sysmon with configuration
 
 Installed Filebeat and enabled Sysmon module
 
-Verified logs arriving in Wazuh Dashboard
+Verified logs in the Wazuh Dashboard
 
-Captured screenshots and generated documentation
+Captured and documented results
 
-------------------------------------------------------------------------------------------------
-
-📁 Project Structure
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🔹 Project Structure
 /Architecture
 /Screenshots
 /Config-Files
@@ -159,33 +184,31 @@ Captured screenshots and generated documentation
 README.md
 LICENSE
 
-------------------------------------------------------------------------------------------------
-📌 Project Status
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🔹 Project Status
 ✔ Fully Implemented
 
 Wazuh Server
 
-Windows Agent
+Wazuh Windows Agent
 
-Sysmon Monitoring
+Sysmon Logging
 
 Filebeat Forwarding
 
-Dashboard Visualization
+Dashboard Monitoring
 
-------------------------------------------------------------------------------------------------
 🔜 Future Enhancements
 
 Shuffle SOAR automation
 
 TheHive case management
 
-Automated incident response
+Automated response workflows
 
-------------------------------------------------------------------------------------------------
-🏁 Conclusion
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🔹 Conclusion
 
-This project provides a complete demonstration of Windows endpoint monitoring using Wazuh SIEM + Sysmon + Filebeat.
-It helps beginners understand log collection, SIEM pipelines, and real-world SOC workflows.
-The architecture also sets the foundation for future SOC automation and IR workflows.
-------------------------------------------------------------------------------------------------
+This project demonstrates an end-to-end implementation of Windows endpoint monitoring using Wazuh + Sysmon + Filebeat.
+It provides a strong foundation for real SOC operations and future automation.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
