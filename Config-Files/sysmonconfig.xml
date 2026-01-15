@@ -1,0 +1,34 @@
+<Sysmon schemaversion="4.50">
+  <EventFiltering>
+    <!-- Process Creation -->
+    <ProcessCreate onmatch="exclude">
+      <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+      <Image condition="is">C:\Windows\explorer.exe</Image>
+    </ProcessCreate>
+
+    <!-- Network Connections -->
+    <NetworkConnect onmatch="exclude">
+      <Image condition="contains">OneDrive</Image>
+      <Image condition="contains">Dropbox</Image>
+    </NetworkConnect>
+
+    <!-- File Creation -->
+    <FileCreateTime onmatch="exclude"/>
+    <FileCreate onmatch="exclude"/>
+
+    <!-- Driver Loaded -->
+    <DriverLoad onmatch="exclude"/>
+
+    <!-- Registry Events -->
+    <RegistryEvent onmatch="exclude"/>
+
+    <!-- DNS Queries -->
+    <DnsQuery onmatch="exclude"/>
+
+    <!-- Process Termination -->
+    <ProcessTerminate onmatch="exclude"/>
+
+    <!-- ImageLoad -->
+    <ImageLoad onmatch="exclude"/>
+  </EventFiltering>
+</Sysmon>

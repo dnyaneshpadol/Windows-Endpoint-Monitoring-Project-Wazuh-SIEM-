@@ -1,0 +1,17 @@
+filebeat.inputs:
+  - type: filestream
+    id: sysmon-input
+    enabled: true
+    paths:
+      - C:/ProgramData/Microsoft/Windows/Sysmon/Logs/*.log
+
+output.elasticsearch:
+  hosts: ["https://< use your WAZUH-SERVER-IP>:9200"]
+  username: "admin"
+  password: "admin"
+  ssl.verification_mode: none
+
+setup.template.enabled: false
+setup.ilm.enabled: false
+
+logging.level: info
