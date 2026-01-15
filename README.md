@@ -11,9 +11,9 @@ The architecture diagram also includes future SOC automation using Shuffle SOAR 
 Environment Used:
 
 # Component	                                Role
- Ubuntu VM                                	Wazuh Server (Manager, Indexer, Dashboard)
- Windows 10 VM                            	Wazuh Agent + Sysmon + Filebeat
- Windows 11 Host                          	Access Wazuh Dashboard via browser
+ Ubuntu VM :                               	Wazuh Server (Manager, Indexer, Dashboard),
+ Windows 10 VM :                           	Wazuh Agent + Sysmon + Filebeat,
+ Windows 11 Host :                        	Access Wazuh Dashboard via browser.
 
  
 Project Goal
